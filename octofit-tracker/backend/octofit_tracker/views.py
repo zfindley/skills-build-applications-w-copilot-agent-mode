@@ -3,19 +3,20 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, TeamSerializer, ActivitySerializer, LeaderboardSerializer, WorkoutSerializer
 from .models import User, Team, Activity, Leaderboard, Workout
+from django.conf import settings
 
 @api_view(['GET', 'POST'])
 def api_root(request, format=None):
     if request.method == 'POST':
         return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
 
-    base_url = 'http://localhost:8000/'
+    base_url = 'http://localhost:8000' + settings.CODESPACE_API_SUFFIX
     return Response({
-        'users': base_url + 'api/users/',
-        'teams': base_url + 'api/teams/',
-        'activities': base_url + 'api/activities/',
-        'leaderboard': base_url + 'api/leaderboard/',
-        'workouts': base_url + 'api/workouts/'
+        'users': base_url + '/api/users/',
+        'teams': base_url + '/api/teams/',
+        'activities': base_url + '/api/activities/',
+        'leaderboard': base_url + '/api/leaderboard/',
+        'workouts': base_url + '/api/workouts/'
     })
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -134,3 +134,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 SECURE_SSL_REDIRECT = False
 CSRF_TRUSTED_ORIGINS = ['https://*.github.dev']
+
+# Add the codespace Django REST API endpoint suffix
+CODESPACE_API_SUFFIX = '/api/'
