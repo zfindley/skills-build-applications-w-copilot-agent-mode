@@ -10,7 +10,8 @@ def api_root(request, format=None):
     if request.method == 'POST':
         return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
 
-    base_url = 'http://localhost:8000' + settings.CODESPACE_API_SUFFIX.rstrip('/')
+    # Ensure the CODESPACE_API_SUFFIX is used correctly
+    base_url = f'http://localhost:8000{settings.CODESPACE_API_SUFFIX.rstrip('/')}'
     return Response({
         'users': base_url + '/users/',
         'teams': base_url + '/teams/',
