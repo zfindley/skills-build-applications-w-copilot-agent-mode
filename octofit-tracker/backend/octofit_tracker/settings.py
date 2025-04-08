@@ -26,6 +26,7 @@ SECRET_KEY = "django-insecure-6!%1pzx^#anv7hv$ivyd9xin6czd3ye_y2$d^4z=sk)(7ii_7e
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.github.dev']
+ALLOWED_HOSTS += ['build-octofit-app-8000.app.github.dev', 'localhost']
 
 
 # Application definition

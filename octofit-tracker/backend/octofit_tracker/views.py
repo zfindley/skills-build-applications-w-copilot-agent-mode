@@ -10,8 +10,13 @@ def api_root(request, format=None):
     if request.method == 'POST':
         return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
 
-    # Ensure the CODESPACE_API_SUFFIX is used correctly
-    base_url = f'http://localhost:8000{settings.CODESPACE_API_SUFFIX.rstrip('/')}'
+    # Update the base URL to use the codespace URL for Django
+    base_url = f'https://build-octofit-app-8000.app.github.dev{settings.CODESPACE_API_SUFFIX.rstrip('/')}'
+
+    # Fallback to localhost if needed
+    if settings.DEBUG:
+        base_url = f'http://localhost:8000{settings.CODESPACE_API_SUFFIX.rstrip('/')}'
+
     return Response({
         'users': base_url + '/users/',
         'teams': base_url + '/teams/',
