@@ -10,13 +10,13 @@ def api_root(request, format=None):
     if request.method == 'POST':
         return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
 
-    base_url = 'http://localhost:8000' + settings.CODESPACE_API_SUFFIX
+    base_url = 'http://localhost:8000' + settings.CODESPACE_API_SUFFIX.rstrip('/')
     return Response({
-        'users': base_url + '/api/users/',
-        'teams': base_url + '/api/teams/',
-        'activities': base_url + '/api/activities/',
-        'leaderboard': base_url + '/api/leaderboard/',
-        'workouts': base_url + '/api/workouts/'
+        'users': base_url + '/users/',
+        'teams': base_url + '/teams/',
+        'activities': base_url + '/activities/',
+        'leaderboard': base_url + '/leaderboard/',
+        'workouts': base_url + '/workouts/'
     })
 
 class UserViewSet(viewsets.ModelViewSet):
